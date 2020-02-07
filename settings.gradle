@@ -1,0 +1,2 @@
+include ':app', ':refresh-footer', ':refresh-header',':refresh-layout'
+rootProject.name='StickTopDemo'

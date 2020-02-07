@@ -1,0 +1,7 @@
+# Android Studio
+*.iml
+.idea
+
+# Gradle files
+.gradle/
+build/

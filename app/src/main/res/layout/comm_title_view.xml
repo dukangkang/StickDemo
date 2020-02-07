@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="#55000000">
+
+    <RelativeLayout
+        android:id="@+id/main_title_rlyt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/comm_title_operation"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/comm_title_city_rlyt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp">
+
+                <ImageView
+                    android:id="@+id/comm_title_city_more"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@mipmap/ic_launcher"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/comm_title_city_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:layout_toRightOf="@+id/weather_main_more"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:maxWidth="176dp"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:textSize="16dp"
+                    tools:text="浦东" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comm_title_loading_llyt"
+                android:layout_width="wrap_content"
+                android:layout_height="12dp"
+                android:layout_gravity="left"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/comm_title_loading_icon"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginRight="5dp"
+                    android:background="@mipmap/ic_launcher"
+                    android:scaleType="fitCenter" />
+
+                <TextView
+                    android:id="@+id/comm_title_loading_tips"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:ellipsize="end"
+                    android:gravity="center|left"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:textSize="8dp"
+                    tools:text="加载中..." />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/comm_title_indicator_rlyt"
+                android:layout_width="match_parent"
+                android:layout_height="12dp"
+                android:layout_gravity="left"
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingLeft="12dp"
+                android:visibility="gone"
+                tools:background="#ff0000"></LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/comm_title_operation"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_margin="12dp"
+            android:layout_toLeftOf="@+id/comm_title_share"
+            android:scaleType="centerCrop"
+            tools:background="@mipmap/ic_launcher" />
+
+        <ImageView
+            android:id="@+id/comm_title_share"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:background="@mipmap/ic_launcher" />
+    </RelativeLayout>
+
+</RelativeLayout>
