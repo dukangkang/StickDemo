@@ -2,7 +2,6 @@ package com.docking.sticktop;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -10,7 +9,9 @@ import android.widget.Toast;
 
 import com.docking.sticktop.adapter.MainAdapter;
 import com.docking.sticktop.event.TopEvent;
+import com.docking.sticktop.widget.ParentViewPager;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -25,7 +26,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<String> mList = new ArrayList<>();
-    private ViewPager mViewPager = null;
+    private ParentViewPager mViewPager = null;
 
     private MainAdapter mAdapter = null;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        EventBus.getDefault().register(this);
         init();
 
     }
@@ -87,11 +89,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMessageEvent(TopEvent event) {
         Log.w("dkk", "TPGActivity TopEvent event.isTop = " + event.isTop);
-//        mViewPager.setScroll(event.isTop);
+        mViewPager.setEnableScroll(!event.isTop);
     }
-
-
 }

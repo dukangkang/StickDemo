@@ -74,7 +74,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<CommHolder> {
             commHolder = new TextHolder(view);
         } else if (viewType == ViewType.TYPE_NEWS){
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_news, viewGroup, false);
-            mNewHolder = new NewsHolder(view, mFragment);
+            mNewHolder = new NewsHolder(view);
             commHolder = mNewHolder;
         } else {
             commHolder = new CommHolder(new TextView(viewGroup.getContext()));
@@ -89,6 +89,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<CommHolder> {
         if (viewHolder instanceof TextHolder) {
             viewHolder.bindData(commBean);
         } else if (viewHolder instanceof NewsHolder) {
+            viewHolder.setFragment(mFragment);
             viewHolder.bindData(commBean);
         }
     }

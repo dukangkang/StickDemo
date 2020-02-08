@@ -20,6 +20,10 @@ public class CommHolder<T> extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
+    public void setFragment(Fragment fragment) {
+
+    }
+
     public void bindData(T bean) {
 
     }

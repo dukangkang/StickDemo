@@ -19,8 +19,11 @@ import com.docking.sticktop.bean.NewsBean;
 import com.docking.sticktop.bean.TabBean;
 import com.docking.sticktop.bean.TextBean;
 import com.docking.sticktop.constant.ViewType;
+import com.docking.sticktop.event.TopEvent;
 import com.docking.sticktop.widget.ParentRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,11 +103,11 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
                 super.onStateChanged(state);
                 if (state == State.EXPANDED) {
                     Log.w("dkk", "==> 展开");
-//                    EventBus.getDefault().post(new TopEvent(true));
+                    EventBus.getDefault().post(new TopEvent(false));
                 } else if (state == State.COLLAPSED) {
                     Log.w("dkk", "==> 折叠");
                     mSmartRefreshLayout.setEnableRefresh(false);
-//                    EventBus.getDefault().post(new TopEvent(false));
+                    EventBus.getDefault().post(new TopEvent(true));
                 }
             }
         });

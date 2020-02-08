@@ -59,15 +59,16 @@ public class ParentRecyclerView extends RecyclerView {
 
             @Override
             public boolean canScrollVertically() {
-                ChildRecyclerView childRecyclerView = findNestedScrollingChildRecyclerView();
-                if (childRecyclerView != null && !childRecyclerView.isScrollTop()) {
-                    changeState(ChangeListener.State.COLLAPSED);
-                    Log.v("dkk", "-->> childRecyclerView.isScrollTop = " + (childRecyclerView.isScrollTop()));
-                } else {
-                    Log.v("dkk", "-->> childRecyclerView = null");
-//                    changeState(ChangeListener.State.EXPANDED);
-                }
-                return childRecyclerView == null || childRecyclerView.isScrollTop();
+//                ChildRecyclerView childRecyclerView = findNestedScrollingChildRecyclerView();
+//                if (childRecyclerView != null && !childRecyclerView.isScrollTop()) {
+//                    changeState(ChangeListener.State.COLLAPSED);
+//                    Log.v("dkk", "-->> childRecyclerView.isScrollTop = " + (childRecyclerView.isScrollTop()));
+//                } else {
+////                    changeState(ChangeListener.State.EXPANDED);
+//                }
+//                Log.v("dkk", "-->> childRecyclerView = " + childRecyclerView);
+//                return childRecyclerView == null || childRecyclerView.isScrollTop();
+                return super.canScrollVertically();
             }
 
 

@@ -31,12 +31,15 @@ public class NewsHolder extends CommHolder<NewsBean> {
     private ChildRecyclerView mCurrentRecyclerView = null;
 
 
-    public NewsHolder(@NonNull View itemView, Fragment fragment) {
+    public NewsHolder(@NonNull View itemView) {
         super(itemView);
-        this.mFragment = fragment;
         mTabLayout = itemView.findViewById(R.id.news_tabs);
         mViewPager = itemView.findViewById(R.id.news_viewpager);
         initListener();
+    }
+
+    public void setFragment(Fragment fragment) {
+        this.mFragment = fragment;
     }
 
     public void initListener() {
@@ -84,7 +87,7 @@ public class NewsHolder extends CommHolder<NewsBean> {
         int size = newsBean.tabList.size();
         Log.w("dkk", "size = " + size);
 
-        mNewsPagerAdapter = new NewsPagerAdapter(mFragment.getFragmentManager());
+        mNewsPagerAdapter = new NewsPagerAdapter(mFragment.getChildFragmentManager());
         mNewsPagerAdapter.replace(newsBean.tabList);
 
         mViewPager.setAdapter(mNewsPagerAdapter);
