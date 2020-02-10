@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import com.docking.sticktop.R;
 import com.docking.sticktop.adapter.CustomAdapter;
 import com.docking.sticktop.bean.CustomEntity;
-import com.docking.sticktop.event.ScrollEvent;
 import com.docking.sticktop.event.TopEvent;
 import com.docking.sticktop.widget.ChildRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -107,8 +106,4 @@ public class CustomFragment extends Fragment {
         mRecyclerView.scrollToPosition(0);
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onMessageEvent(ScrollEvent event) {
-        Log.w("dkk", "CustomFragment ScrollEvent.isScroll = " + event.isScroll);
-    }
 }

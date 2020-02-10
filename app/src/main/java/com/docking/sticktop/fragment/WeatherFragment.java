@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +22,7 @@ import com.docking.sticktop.bean.TabBean;
 import com.docking.sticktop.bean.TextBean;
 import com.docking.sticktop.constant.ViewType;
 import com.docking.sticktop.event.TopEvent;
+import com.docking.sticktop.listener.OnChildScrollLisener;
 import com.docking.sticktop.widget.ParentRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -29,6 +32,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WeatherFragment extends Fragment implements View.OnClickListener {
+
+    private int changeHeight = 200;
 
     private String[] strArray = {"关注", "关注", "关注", "关注", "关注", "关注"};
 
@@ -111,25 +116,87 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
                 }
             }
         });
+
+        mParentRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                // 第一个可见Item的位置
+                int position = layoutManager.findFirstVisibleItemPosition();
+                int targetPos = position + 1;
+                if (targetPos >= mMultiTypeAdapter.getItemCount()) {
+                    return;
+                }
+
+                int viewType = mMultiTypeAdapter.getItemViewType(targetPos);
+                if (viewType == ViewType.TYPE_NEWS) {
+                    // 注意此操作如果第一项划出屏幕外,拿到的是空的，所以必须是position是0的时候才能调用
+                    View firstView = layoutManager.findViewByPosition(targetPos);
+                    // 第一项Item的高度
+//                    int firstHeight = firstView.getHeight();
+                    // 距离顶部的距离，是负数，也就是说-top就是它向上滑动的距离
+                    int scrollY = firstView.getTop();
+//                    // 要在它滑到二分之一的时候去渐变
+//                    int changeHeight = 300;
+                    Log.w("dkk", "==> scrollY = " + scrollY);
+                    if (scrollY < changeHeight) {
+                        float alpha = (float)(changeHeight - scrollY) / changeHeight;
+//                        Log.w("dkk", "==> alpha = " + alpha);
+//                        EventBus.getDefault().post(new ScrollEvent(alpha));
+                        if (mChildScrollLisener != null) {
+                            mChildScrollLisener.onVisible(true);
+                            mChildScrollLisener.onScroll(alpha);
+                        }
+                    } else {
+                        if (mChildScrollLisener != null) {
+                            mChildScrollLisener.onVisible(false);
+                        }
+                    }
+                } else {
+                    if (mChildScrollLisener != null) {
+                        mChildScrollLisener.onVisible(false);
+                    }
+                }
+            }
+        });
     }
 
-    /**
-     * 置顶
-     * @param isTop
-     */
-    private void stickTop(final boolean isTop) {
-        mAdapter.notifyTop(isTop);
-    }
-
-    /**
-     * 设置是否展开
-     */
-    private void gotoTopAndBottom(final boolean isExpanded) {
-
-    }
+//    /**
+//     * 置顶
+//     * @param isTop
+//     */
+//    private void stickTop(final boolean isTop) {
+//        mAdapter.notifyTop(isTop);
+//    }
+//
+//    /**
+//     * 设置是否展开
+//     */
+//    private void gotoTopAndBottom(final boolean isExpanded) {
+//
+//    }
 
     @Override
     public void onClick(View v) {
+    }
+
+    private OnChildScrollLisener mChildScrollLisener = null;
+    public void setOnChildScrollLisener(OnChildScrollLisener lisener) {
+        this.mChildScrollLisener = lisener;
+    }
+
+    public void reset() {
+        if (mParentRecyclerView != null) {
+//            mParentRecyclerView.setEnableScroll(true);
+            mParentRecyclerView.scrollToPosition(0);
+        }
     }
 
 }

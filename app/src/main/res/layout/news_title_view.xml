@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent">-->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newstitle_rlyt"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:paddingLeft="12dp"
+    android:alpha="0"
+    android:background="#ff0000"
+    android:visibility="gone"
+    tools:background="#ff0000">
+
+    <TextView
+        android:id="@+id/newstitle_title"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="4dp"
+        android:layout_toRightOf="@+id/weather_main_more"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="#ffffff"
+        android:textSize="17dp"
+        tools:text="即刻资讯" />
+
+    <ImageView
+        android:id="@+id/newstitle_title_back"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="5dp"
+        android:background="@mipmap/ic_launcher"
+        android:scaleType="fitCenter" />
+</RelativeLayout>
+
+    <!--</RelativeLayout>-->

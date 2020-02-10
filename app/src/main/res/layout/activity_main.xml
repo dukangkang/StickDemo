@@ -15,6 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <include
+        layout="@layout/news_title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/main_comm_title"
+        android:layout_alignBottom="@+id/main_comm_title"/>
+
 <!--    <android.support.v4.view.ViewPager-->
     <com.docking.sticktop.widget.ParentViewPager
         android:id="@+id/main_comm_viewpager"
