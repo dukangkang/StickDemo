@@ -21,8 +21,6 @@ import com.docking.sticktop.adapter.MultiTypeAdapter;
  */
 public class ParentRecyclerView extends RecyclerView {
 
-    private boolean enableScroll = true;
-
     private ChangeListener.State mCurrentState = ChangeListener.State.IDLE;
 
     public ParentRecyclerView(@NonNull Context context) {
@@ -67,7 +65,7 @@ public class ParentRecyclerView extends RecyclerView {
 //                } else {
 ////                    changeState(ChangeListener.State.EXPANDED);
 //                }
-//                Log.v("dkk", "-->> childRecyclerView = " + childRecyclerView);
+////                Log.v("dkk", "-->> childRecyclerView = " + childRecyclerView);
 //                return childRecyclerView == null || childRecyclerView.isScrollTop();
                 return super.canScrollVertically();
             }
@@ -101,10 +99,10 @@ public class ParentRecyclerView extends RecyclerView {
             stopScroll();
         }
 
-//        Log.e("dkk", "-->> dispatchTouchEvent isScrollEnd....." + isScrollEnd());
-        if(isScrollEnd()) {
-//            Log.e("dkk", "-->> dispatchTouchEvent childRecyclerView");
-            //如果父RecyclerView已经滑动到底部，需要让子RecyclerView滑动剩余的距离
+        // <方案一>
+        // 仅仅处理吸顶后，交付给子view处理
+        // 如果父RecyclerView已经滑动到底部，需要让子RecyclerView处理滑动事件
+        if (isScrollEnd()) {
             View childViewPager = findNestedScrollingChildViewPager();
             if (childViewPager != null) {
                 changeState(ChangeListener.State.COLLAPSED);
@@ -140,10 +138,6 @@ public class ParentRecyclerView extends RecyclerView {
     private boolean isScrollEnd() {
         //RecyclerView.canScrollVertically(1)的值表示是否能向上滚动，false表示已经滚动到底部
         return !canScrollVertically(1);
-    }
-
-    public void setEnableScroll(boolean enableScroll) {
-        this.enableScroll = enableScroll;
     }
 
     private ViewPager findNestedScrollingChildViewPager() {

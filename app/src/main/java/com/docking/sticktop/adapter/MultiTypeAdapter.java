@@ -67,7 +67,7 @@ public class MultiTypeAdapter extends RecyclerView.Adapter<CommHolder> {
     @NonNull
     @Override
     public CommHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        Log.w("dkk", "onCreateViewHolder viewType = " + viewType);
+//        Log.w("dkk", "onCreateViewHolder viewType = " + viewType);
         CommHolder commHolder = null;
         if(viewType == ViewType.TYPE_TEXT) {
             View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.layout_item_text, viewGroup, false);

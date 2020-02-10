@@ -13,7 +13,7 @@ import android.util.AttributeSet;
  */
 public class ChildRecyclerView extends RecyclerView {
 
-    // 标志是否置顶：true：未置顶，false:置顶
+    // 标志是否置顶：true：未置顶，false:置顶,
     boolean flag = true;
 
     public ChildRecyclerView(@NonNull Context context) {
@@ -31,30 +31,27 @@ public class ChildRecyclerView extends RecyclerView {
         init(context);
     }
 
-//    @Override
-//    public boolean dispatchTouchEvent(MotionEvent ev) {
-//        if (isScrollEnd()) {
-//            return true;
-//        }
-//        return super.dispatchTouchEvent(ev);
-//    }
-//
-//    private boolean isScrollEnd() {
-//        //RecyclerView.canScrollHorizontally(1)的值表示是否能向左边滚动，false表示已经滚动到底部
-//        return !canScrollHorizontally(1);
-//    }
-
     private void init(Context context) {
         setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
     }
 
+//    /**
+//     * 是否支持向下滚动
+//     * @return
+//     * 恢复状态，需要重置
+//     */
+//    public boolean isScrollTop() {
+//        if (!flag) {
+//            return flag;
+//        }
+//        //RecyclerView.canScrollVertically(-1)的值表示是否能向下滚动，false表示已经滚动到顶部
+//        flag = !canScrollVertically(-1);
+//        return flag;
+//    }
+
     public boolean isScrollTop() {
-        if (!flag) {
-            return flag;
-        }
         //RecyclerView.canScrollVertically(-1)的值表示是否能向下滚动，false表示已经滚动到顶部
-        flag = !canScrollVertically(-1);
-        return flag;
+        return !canScrollVertically(-1);
     }
 
 

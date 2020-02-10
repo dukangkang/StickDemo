@@ -53,6 +53,7 @@ public class CustomFragment extends Fragment {
 
     private void init() {
         mRefreshLayout = getView().findViewById(R.id.smart_refresh_layout);
+        mRefreshLayout.setEnableRefresh(false);
         initRecyclerView();
     }
 

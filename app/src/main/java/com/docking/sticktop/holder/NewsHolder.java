@@ -102,6 +102,11 @@ public class NewsHolder extends CommHolder<NewsBean> {
     }
 
     public ChildRecyclerView getCurrentChildRecyclerView() {
+        if (mViewPager == null || mNewsPagerAdapter == null) {
+            return null;
+        }
+        int currentItem = mViewPager.getCurrentItem();
+        ChildRecyclerView mCurrentRecyclerView = mNewsPagerAdapter.getChildRecyclerView(currentItem);
         return mCurrentRecyclerView;
     }
 }
