@@ -111,7 +111,7 @@ public class WeatherFragment extends Fragment implements View.OnClickListener {
                     EventBus.getDefault().post(new TopEvent(false));
                 } else if (state == State.COLLAPSED) {
                     Log.w("dkk", "==> 折叠");
-                    mSmartRefreshLayout.setEnableRefresh(false);
+//                    mSmartRefreshLayout.setEnableRefresh(false);
                     EventBus.getDefault().post(new TopEvent(true));
                 }
             }

@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 
 /**
  * @author: dukangkang
@@ -33,6 +35,12 @@ public class ChildRecyclerView extends RecyclerView {
 
     private void init(Context context) {
         setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        Log.w("dkk", "ChildRecyclerView isScrollTop() = " + isScrollTop());
+        return super.dispatchTouchEvent(ev);
     }
 
 //    /**

@@ -59,7 +59,7 @@ public class MainAdapter extends FragmentStatePagerAdapter implements OnChildScr
 
     @Override
     public void onScroll(float alpha) {
-        Log.w("dkk", "onScroll alpha = " + alpha);
+//        Log.w("dkk", "onScroll alpha = " + alpha);
         if (mChildScrollLisener != null) {
             mChildScrollLisener.onScroll(alpha);
         }
@@ -67,7 +67,7 @@ public class MainAdapter extends FragmentStatePagerAdapter implements OnChildScr
 
     @Override
     public void onVisible(boolean visible) {
-        Log.w("dkk", "onScroll visible = " + visible);
+//        Log.w("dkk", "onScroll visible = " + visible);
         if (mChildScrollLisener != null) {
             mChildScrollLisener.onVisible(visible);
         }
