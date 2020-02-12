@@ -11,7 +11,6 @@ import com.docking.sticktop.R;
 import com.docking.sticktop.adapter.NewsPagerAdapter;
 import com.docking.sticktop.bean.NewsBean;
 import com.docking.sticktop.widget.ChildRecyclerView;
-import com.docking.sticktop.widget.NewsViewPager;
 
 /**
  * @author: dukangkang
@@ -23,7 +22,7 @@ public class NewsHolder extends CommHolder<NewsBean> {
     private Fragment mFragment = null;
 
     private TabLayout mTabLayout = null;
-    private NewsViewPager mViewPager = null;
+    private ViewPager mViewPager = null;
 
     private NewsPagerAdapter mNewsPagerAdapter;
 
